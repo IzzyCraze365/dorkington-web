@@ -2,6 +2,8 @@
 // Version 4.0 - Web Version
 // John Isabella III
 
+//TODO Update Defaults
+
 const readline = require("readline");
 const readlineInterface = readline.createInterface(
   process.stdin,
