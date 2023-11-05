@@ -1,5 +1,5 @@
 // Welcome to Dorkington - A Text Based Adventure
-// Version 4.0 - Web Version
+// Version 5.0 - Web Version
 // John Isabella III
 
 //TODO Update Defaults
