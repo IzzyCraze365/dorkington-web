@@ -1,5 +1,20 @@
+#title {
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    background-color: green;
+
+}
+
+.title_words {
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
 .box {
     display: flex;
+    justify-content: center;
     flex-direction: row;
     background-color: aqua;
 }
@@ -72,4 +87,11 @@
     height: auto;
     padding: 5%;
     margin: 10px 0;
+}
+
+/* This is for mobile only games */
+@media only screen and (max-width: 980px) {
+    #title {
+        display: none;
+    }
 }
