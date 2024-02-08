@@ -44,7 +44,7 @@
 .adventure_text {
     display: flex;
     flex-direction: column;
-    background-color: gray;
+    background-color: purple;
     width: 80%;
     height: auto;
     margin: 0 5px;
