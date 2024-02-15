@@ -2,13 +2,12 @@
 // Version 5.0 - Web Version
 // John Isabella III
 
-//TODO Update Defaults
-
-const readline = require("readline");
+//! This was originally a Terminal Game, run in the console.
+/* const readline = require("readline");
 const readlineInterface = readline.createInterface(
   process.stdin,
   process.stdout
-);
+); 
 
 function ask(questionText) {
   return new Promise((resolve, reject) => {
@@ -16,6 +15,12 @@ function ask(questionText) {
   });
 }
 // Above is the provided code
+*/
+
+//! These are the lines of Code added to make this work on a Webpage
+let adventureText = document.querySelector("#adventure_text");
+let formType = document.querySelector("#type_commands");
+let gameHistory = document.querySelector("#game_log");
 
 // Randomly assigns the number to be used by the secretName
 let randomNumber = randomNum(1, 13);
@@ -825,7 +830,7 @@ let interactCommodity = {
   "Death's Scythe": deathsScythe,
 };
 
-titleScreen(); // Title Screen & Art
+//titleScreen(); // Title Screen & Art //! This is being turned into an Onclick
 
 //! Function List
 // This is the function that Plays the Game
@@ -1384,7 +1389,23 @@ function colorChangeWords(string, highlightedWords) {
   highlightedWords.forEach((word) => {
     string = string.replaceAll(word, yellow + word + white);
   });
-  console.log(white + string + white);
+  console.log(white + string + white); // TODO make this write to HTML
+
+  adventureText.textContent = string;
+  gameLog(string);
+}
+
+//TODO New function to
+function ask(questionText) {
+  adventureText.textContent = questionText;
+  gameLog(questionText);
+}
+
+function gameLog(log) {
+  const newLine = document.createElement("p");
+  let words = document.createTextNode(log);
+  newLine.appendChild(words);
+  gameHistory.appendChild(newLine);
 }
 
 // Help Menu
@@ -1527,6 +1548,7 @@ async function titleScreen() {
  ██████╔╝╚█████╔╝██║░░██║██║░╚██╗██║██║░╚███║╚██████╔╝░░░██║░░░╚█████╔╝██║░╚███║
  ╚═════╝░░╚════╝░╚═╝░░╚═╝╚═╝░░╚═╝╚═╝╚═╝░░╚══╝░╚═════╝░░░░╚═╝░░░░╚════╝░╚═╝░░╚══╝
 `);
+  gameLog(`WELCOME TO DORKINGTON`);
   colorChangeWords(`\nWould you like to Play this Game?`, highlightedWords);
   const titleQuestion = `Yes (y) or No (n)\nView Credits (C)\n>_ `;
   let playGame = await ask(titleQuestion);

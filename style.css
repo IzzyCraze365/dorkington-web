@@ -43,7 +43,7 @@
     margin: 1%;
 }
 
-.adventure_text {
+#adventure_text {
     display: flex;
     flex-direction: column;
     background-color: purple;

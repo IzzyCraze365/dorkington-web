@@ -57,15 +57,11 @@ by John Isabella III -->
       <div class="box">
         <div class="game_screen">
           <div class="display_image">IMAGE OF LOCATION OR CHARACTER HERE</div>
-          <p class="adventure_text">
-            Test Test Test Test Test <br>therhinestoneworld
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio
-            architecto illo amet recusandae possimus quibusdam labore, pariatur
-            cumque fugiat harum corrupti esse, totam voluptate. In aperiam
-            exercitationem nostrum fuga expedita quo omnis aut quas distinctio
-            necessitatibus recusandae provident nisi esse sint doloremque
-            accusantium, eveniet totam ea voluptatibus itaque quae voluptatem??
-          </p>
+          <div id="game_log"></div>
+          <p id="adventure_text">Press the START button to begin!</p>
+          <button class="button start" onclick="titleScreen()">
+            Start Game
+          </button>
         </div>
         <div class="controls">
           <div class="button_line">
@@ -91,7 +87,9 @@ by John Isabella III -->
       </div>
     </div>
     <div class="input_commands">
-      <form class="type_commands">Type Your Input Here more form lines needed</form>
+      <form id="type_commands">
+        Type Your Input Here more form lines needed
+      </form>
     </div>
 
     <!-- Bootstrap Scripts -->
