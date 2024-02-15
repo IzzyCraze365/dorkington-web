@@ -852,7 +852,7 @@ async function start() {
 
 // Player selects actions every round
 async function heroAction(heroName) {
-  const heroAction = `What would you like to do?\n>_ `;
+  const heroAction = `What would you like to do?`;
   let action = await ask(heroAction);
   action = capitalizePlayerInput(action);
   console.clear();
@@ -870,7 +870,7 @@ async function heroAction(heroName) {
     itemDisplay(hero.inventory);
   } else if (action === "Drop" || action === "D") {
     // Removes item from Backpack, Adds item to Current Room
-    let dropItem = await ask(`\nWhat would you like to drop?\n>_ `);
+    let dropItem = await ask(`\nWhat would you like to drop?`);
     droppingItem = capitalizePlayerInput(dropItem);
     droppingItem = nameChecker(droppingItem);
     if (hero.inventory.includes(droppingItem) === true) {
@@ -891,7 +891,7 @@ async function heroAction(heroName) {
     }
   } else if (action === "Take" || action === "T") {
     // Adds item to Backpack, Removes item from Current Room
-    let takeItem = await ask(`\nWhat would you like to take?\n>_ `);
+    let takeItem = await ask(`\nWhat would you like to take?`);
     tookenItem = capitalizePlayerInput(takeItem);
     tookenItem = nameChecker(tookenItem);
     if (
@@ -927,7 +927,7 @@ async function heroAction(heroName) {
     }
   } else if (action === "Interact" || action === "I") {
     //Let's player Interact with an Object or person
-    let interactObject = await ask(`\nWhat do you want to interact with?\n>_ `);
+    let interactObject = await ask(`\nWhat do you want to interact with?`);
     interactableObject = capitalizePlayerInput(interactObject);
     //console.log("Test1", interactableObject); //! TEST
     interactableObject = nameChecker(interactableObject);
@@ -1011,7 +1011,7 @@ async function introduction() {
     `\nThe sun rises peacefully on the small hamlet of Dorkington.\nThe birds are singing sweetly in the trees.\nThe morning dew glistens on the grass as the first rays of the sun reach the still earth below.\nA gentle breeze caresses your face as you briskly walk to the Town Triangle, hoping to get a jump on your morning chores.\n\nUpon entering the Town Triangle you see the village's heroic Adventurer in a rather bad temper.\nThe Adventurer groans loudly, before throwing his Sword down upon the ground.\n    "I has't hadith enough!\n     Yee all kepeth requesting too much.\n     Th're is nary a way f'r me to slayeth a Dragon with this steel!\n     I art to retire."\n\nIt appears the village is in need of a new heroic Adventurer...\n\nDo you pick up the Sword?`,
     highlightedWords
   );
-  const welcomeMessage = `Yes (y) or No (n)\n>_ `;
+  const welcomeMessage = `Yes (y) or No (n)`;
   let answer = await ask(welcomeMessage);
   answer = capitalizePlayerInput(answer); // Normal Mode or super-easy don't have to do anything mode.
   console.clear();
@@ -1020,7 +1020,7 @@ async function introduction() {
       `\nA Simple Villager, whom bares an uncanny resemblance to you apporaches.\n    "Greetings stranger!\n     It is not often a new adventurer enters our peaceful village of Dorkington.`,
       highlightedWords
     );
-    let heroName = await ask(`     What is your name, adventurer?"\n>_ `); // Player chooses their Hero Name for the story
+    let heroName = await ask(`     What is your name, adventurer?"`); // Player chooses their Hero Name for the story
     highlightedWords.push(heroName);
     console.clear();
     colorChangeWords(
@@ -1068,7 +1068,7 @@ async function locationMove() {
     `\nYou are currently standing in the ${currentLocation}.`,
     highlightedWords
   );
-  newLocation = await ask(`Where would you like to go?\n>_ `);
+  newLocation = await ask(`Where would you like to go?`);
   newLocation = capitalizePlayerInput(newLocation);
   newLocation = nameChecker(newLocation);
   locationUpdate(newLocation);
@@ -1190,7 +1190,7 @@ async function musicianSongInteraction() {
     `\n\nMusician With A Broken Arm\n    "Would you like to hear the new song I am working on?\n     I am sure it will be a smash hit."\n`,
     highlightedWords
   );
-  let playMusic = await ask(`Yes (y) or No (n)\n>_ `);
+  let playMusic = await ask(`Yes (y) or No (n)`);
   playMusic = capitalizePlayerInput(playMusic);
   if (playMusic === "Yes" || playMusic === "Y") {
     colorChangeWords(
@@ -1227,7 +1227,7 @@ async function musicianSongInteraction() {
 //Guess the Number - Retired Adventurer Interactions - Cheat Menu
 async function retiredAdventurerInteraction() {
   const cheatMenu = 5; // Threshold to access the cheat menu
-  let wantToPlayGame = await ask(`     Yay (y) or Nay (n)"\n>_ `);
+  let wantToPlayGame = await ask(`     Yay (y) or Nay (n)"`);
   wantToPlayGame = capitalizePlayerInput(wantToPlayGame);
   if (wantToPlayGame === "Yay" || wantToPlayGame === "Y") {
     if (cheatMenu > retiredAdventurer.status) {
@@ -1321,13 +1321,13 @@ async function retiredAdventurerInteraction() {
 
 //This function stores the Hero's guess as an interger
 async function heroGuess() {
-  let guessedNumber = await ask(`\n    "Please pickith a number."\n>_ `);
+  let guessedNumber = await ask(`\n    "Please pickith a number."`);
   return parseInt(guessedNumber);
 }
 
 // Password Name Gane - Sleeping Child Puzzle
 async function sayMyName() {
-  let demonName = await ask(`     Come on,\n     Say my name!"\n>_ `);
+  let demonName = await ask(`     Come on,\n     Say my name!"`);
   demonName = capitalizePlayerInput(demonName);
   return demonName;
   //highlightedWords.push(nameGuess);
@@ -1401,6 +1401,7 @@ function ask(questionText) {
   gameLog(questionText);
 }
 
+// Creates a running Log for the player to scroll through
 function gameLog(log) {
   const newLine = document.createElement("p");
   let words = document.createTextNode(log);
@@ -1419,7 +1420,7 @@ function helpMenu() {
 // Function to start the game again after you complete it
 async function playAgain() {
   let restart = await ask(
-    `\nWould you like to Play Again?\nPlay (P) or Exit (E)?\nView Credits (C)\n>_ `
+    `\nWould you like to Play Again?\nPlay (P) or Exit (E)?\nView Credits (C)`
   );
   restart = capitalizeFirstLetter(restart);
   if (restart === ("P" || "Play")) {
@@ -1488,7 +1489,7 @@ async function viewCredits() {
   ____________Copyright MMXXIII____________
   `);
   colorChangeWords(`\nReturn to the Title Screen?`, highlightedWords);
-  let titleQuestion = await ask(`Yes (y) or No (n)\n>_ `);
+  let titleQuestion = await ask(`Yes (y) or No (n)`);
   titleQuestion = capitalizePlayerInput(titleQuestion);
   console.clear();
   if (titleQuestion === "Yes" || titleQuestion === "Y") {
@@ -1550,7 +1551,7 @@ async function titleScreen() {
 `);
   gameLog(`WELCOME TO DORKINGTON`);
   colorChangeWords(`\nWould you like to Play this Game?`, highlightedWords);
-  const titleQuestion = `Yes (y) or No (n)\nView Credits (C)\n>_ `;
+  const titleQuestion = `Yes (y) or No (n)\nView Credits (C)`;
   let playGame = await ask(titleQuestion);
   playGame = capitalizePlayerInput(playGame);
   console.clear();
