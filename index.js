@@ -1389,7 +1389,7 @@ function colorChangeWords(string, highlightedWords) {
   highlightedWords.forEach((word) => {
     string = string.replaceAll(word, yellow + word + white);
   });
-  console.log(white + string + white); // TODO make this write to HTML
+  console.log(white + string + white); // TODO make this write to HTML, try to make it so this can boled the "highlighted words"
 
   adventureText.textContent = string;
   gameLog(string);
