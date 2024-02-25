@@ -2,7 +2,7 @@
 // Version 5.0 - Web Version
 // John Isabella III
 
-//! This was originally a Terminal Game, run in the console.
+//! This was originally a Terminal Game, run in the console
 //TODO Remove these once web version works
 /* const readline = require("readline");
 const readlineInterface = readline.createInterface(
