@@ -846,6 +846,19 @@ let interactCommodity = {
 
 //titleScreen(); // Title Screen & Art //! This is being turned into an Onclick
 
+
+// Event Listeners for the Buttons
+startButton.addEventListener("click", titleScreen);
+moveButton.addEventListener("click", locationMove);
+lookButton.addEventListener("click", lookClicked);
+interactButton.addEventListener("click", interactClicked);
+statusButton.addEventListener("click", colorChangeWords(`\nStatus: ${hero.status}\n`, highlightedWords));
+backpackButton.addEventListener("click", itemDisplay(hero.inventory));
+takeButton.addEventListener("click", takeClicked);
+dropButton.addEventListener("click", dropClicked);
+helpButton.addEventListener("click", helpMenu);
+exitButton.addEventListener("click", quitGame);
+
 //! Function List
 // This is the function that Plays the Game
 async function start() {
@@ -1748,14 +1761,3 @@ function tryAgain() {
 ██║░░██║╚██████╔╝██║░░██║██║██║░╚███║
 ╚═╝░░╚═╝░╚═════╝░╚═╝░░╚═╝╚═╝╚═╝░░╚══╝\n\n\n\n\n`);
 }
-
-// Event Listeners for the Buttons
-moveButton.addEventListener("click", locationMove);
-lookButton.addEventListener("click", lookClicked);
-interactButton.addEventListener("click", interactClicked);
-statusButton.addEventListener("click", colorChangeWords(`\nStatus: ${hero.status}\n`, highlightedWords));
-backpackButton.addEventListener("click", itemDisplay(hero.inventory));
-takeButton.addEventListener("click", takeClicked);
-dropButton.addEventListener("click", dropClicked);
-helpButton.addEventListener("click", helpMenu);
-exitButton.addEventListener("click", quitGame);
