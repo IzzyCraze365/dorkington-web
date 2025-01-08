@@ -22,6 +22,16 @@ function ask(questionText) {
 let adventureText = document.querySelector("#adventure_text");
 let formType = document.querySelector("#type_commands");
 let gameHistory = document.querySelector("#game_log");
+let moveButton = document.querySelector(".move");
+let lookButton = document.querySelector(".look");
+let interactButton = document.querySelector(".interact");
+let statusButton = document.querySelector(".status");
+let backpackButton = document.querySelector(".backpack");
+let takeButton = document.querySelector(".take");
+let dropButton = document.querySelector(".drop");
+let helpButton = document.querySelector(".help");
+let exitButton = document.querySelector(".exit");
+
 
 // Randomly assigns the number to be used by the secretName
 let randomNumber = randomNum(1, 13);
@@ -1004,6 +1014,148 @@ async function heroAction(heroName) {
   } else {
     unknownPrompt(action);
   }
+}
+
+
+function dropClicked() {
+  console.log("inside dropClicked");
+    // Removes item from Backpack, Adds item to Current Room
+    let dropItem = await ask(`\nWhat would you like to drop?`);
+    droppingItem = capitalizePlayerInput(dropItem);
+    droppingItem = nameChecker(droppingItem);
+    if (hero.inventory.includes(droppingItem) === true) {
+      itemExchange(
+        hero.inventory,
+        locations[currentLocation].inventory,
+        droppingItem
+      );
+      colorChangeWords(
+        `\nYou have dropped the ${droppingItem}.\n`,
+        highlightedWords
+      );
+    } else {
+      colorChangeWords(
+        `\nSorry ${heroName}, you don't have a ${dropItem} to drop.\n`,
+        highlightedWords
+      );
+    }
+  } 
+  function takeClicked() {
+    console.log("inside takeClicked");
+    // Adds item to Backpack, Removes item from Current Room
+    let takeItem = await ask(`\nWhat would you like to take?`);
+    tookenItem = capitalizePlayerInput(takeItem);
+    tookenItem = nameChecker(tookenItem);
+    if (
+      locations[currentLocation].inventory.includes(tookenItem) === true &&
+      tookenItem === "Bag Of Jewels"
+    ) {
+      BagOfJewels.followUp();
+    } else if (
+      locations[currentLocation].inventory.includes(tookenItem) === true
+    ) {
+      itemExchange(
+        locations[currentLocation].inventory,
+        hero.inventory,
+        tookenItem
+      );
+      colorChangeWords(
+        `\nYou have picked up the ${tookenItem}.\n`,
+        highlightedWords
+      );
+    } else if (
+      locations[currentLocation].interact.includes(tookenItem) === true
+    ) {
+      //Immovable Object example, stops Hero from Taking NPCs
+      colorChangeWords(
+        `\nWait ${heroName}!\nYou can't pick up the ${tookenItem}.\nWhat would the other townsfolk think if they saw you?\n`,
+        highlightedWords
+      );
+    } else {
+      colorChangeWords(
+        `\nSorry ${heroName}, there is no ${takeItem} for you to take.\n`,
+        highlightedWords
+      );
+    }
+  } 
+  
+  function interactClicked() {
+    console.log("inside interactClicked");
+    //Let's player Interact with an Object or person
+    let interactObject = await ask(`\nWhat do you want to interact with?`);
+    interactableObject = capitalizePlayerInput(interactObject);
+    //console.log("Test1", interactableObject); //! TEST
+    interactableObject = nameChecker(interactableObject);
+    //console.log("Test2", interactableObject); //! TEST
+    if (
+      locations[currentLocation].interact.includes(interactableObject) ===
+        true &&
+      interactableObject === "Sleeping Child"
+    ) {
+      await sleepingChildInteraction(); //Special Interaction (see below)
+    } else if (
+      locations[currentLocation].interact.includes(interactableObject) ===
+        true &&
+      interactableObject === "Retired Adventurer"
+    ) {
+      colorChangeWords(retiredAdventurer.interact, highlightedWords);
+      await retiredAdventurerInteraction(); //Special Interaction (see below)
+    } else if (
+      locations[currentLocation].interact.includes(interactableObject) ===
+        true &&
+      interactableObject === "Musician With A Broken Arm" &&
+      musicianWithABrokenArm.status === "Singing"
+    ) {
+      colorChangeWords(musicianWithABrokenArm.interact, highlightedWords);
+      await musicianSongInteraction(); //Special Interaction (see below)
+    } else if (
+      locations[currentLocation].inventory.includes(interactableObject) ===
+        true ||
+      hero.inventory.includes(interactableObject) === true
+    ) {
+      colorChangeWords(
+        `\n${interactCommodity[interactableObject].interact}`,
+        highlightedWords
+      );
+      interactCommodity[interactableObject].followUp();
+    } else if (
+      locations[currentLocation].interact.includes(interactableObject) === true
+    ) {
+      colorChangeWords(
+        `\n${interactPeople[interactableObject].interact}`,
+        highlightedWords
+      );
+      interactPeople[interactableObject].followUp();
+    } else {
+      colorChangeWords(
+        `\nSorry ${heroName}.  You can't interact with ${interactObject}.\n`,
+        highlightedWords
+      );
+    }
+  } 
+  
+  function lookClicked() {
+    console.log("inside lookClicked");
+    //Let's player get a description of the Location they are in, good for finding Interactable targets
+    colorChangeWords(
+      `${locations[currentLocation].description}`,
+      highlightedWords
+    );
+    if (locations[currentLocation].inventory.length > 0) {
+      // checks to see if there is anything in the Room's Inventory
+      colorChangeWords(
+        `Looking around, you see: ${locations[currentLocation].inventory.join(
+          ", "
+        )}\n`,
+        highlightedWords
+      );
+    } else {
+      colorChangeWords(
+        `Looking around, you don't see any items.`,
+        highlightedWords
+      );
+    }
+
 }
 
 // The Game Intro, sets up the story
