@@ -22,6 +22,9 @@ function ask(questionText) {
 let adventureText = document.querySelector("#adventure_text");
 let formType = document.querySelector("#type_commands");
 let gameHistory = document.querySelector("#game_log");
+
+// This creates all of the Buttons for the Game
+let startButton = document.querySelector(".start");
 let moveButton = document.querySelector(".move");
 let lookButton = document.querySelector(".look");
 let interactButton = document.querySelector(".interact");
@@ -1745,3 +1748,14 @@ function tryAgain() {
 ██║░░██║╚██████╔╝██║░░██║██║██║░╚███║
 ╚═╝░░╚═╝░╚═════╝░╚═╝░░╚═╝╚═╝╚═╝░░╚══╝\n\n\n\n\n`);
 }
+
+// Event Listeners for the Buttons
+moveButton.addEventListener("click", locationMove);
+lookButton.addEventListener("click", lookClicked);
+interactButton.addEventListener("click", interactClicked);
+statusButton.addEventListener("click", colorChangeWords(`\nStatus: ${hero.status}\n`, highlightedWords));
+backpackButton.addEventListener("click", itemDisplay(hero.inventory));
+takeButton.addEventListener("click", takeClicked);
+dropButton.addEventListener("click", dropClicked);
+helpButton.addEventListener("click", helpMenu);
+exitButton.addEventListener("click", quitGame);
