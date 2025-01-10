@@ -860,7 +860,7 @@ helpButton.addEventListener("click", helpMenu);
 exitButton.addEventListener("click", quitGame);
 
 //! Function List
-// This is the function that Plays the Game
+// This is the function that Plays the Game.
 async function start() {
   heroName = await introduction(); //The player will have to name themselves;
   colorChangeWords(
