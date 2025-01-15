@@ -844,7 +844,7 @@ let interactCommodity = {
   "Death's Scythe": deathsScythe,
 };
 
-//titleScreen(); // Title Screen & Art //! This is being turned into an Onclick.
+//titleScreen(); // Title Screen & Art //! This is being turned into an Onclick
 
 
 // Event Listeners for the Buttons
